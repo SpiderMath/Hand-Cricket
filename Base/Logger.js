@@ -1,3 +1,5 @@
+const { stripIndents } = require("common-tags");
+
 module.exports = class Logger {
 	constructor() {
 		this.colors = {
@@ -13,8 +15,12 @@ module.exports = class Logger {
 		console.log(`${this.colors.green}${new Date().toISOString()} ${ctx}: ${this.colors.reset} ${message}`);
 	}
 
-	error(ctx, message) {
-		console.log(`${this.colors.red}${new Date().toISOString()} ${ctx}: ${this.colors.reset} ${message}`);
+	error(ctx, message, stack) {
+		console.log(stripIndents`
+			${this.colors.red}${new Date().toUTCString()} ${ctx}: ${this.colors.reset} 
+			${this.colors.red} Message: ${this.colors.reset}${message}
+			${this.colors.red} Stack Trace: ${this.colors.reset} ${stack || "Not provided"}
+		`);
 	}
 
 	info(ctx, message) {

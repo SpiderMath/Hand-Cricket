@@ -20,6 +20,10 @@ class BaseEvent {
 		 */
 		this.name = eventName;
 	}
+
+	async run() {
+		// Nothing here
+	}
 }
 
 module.exports = BaseEvent;
